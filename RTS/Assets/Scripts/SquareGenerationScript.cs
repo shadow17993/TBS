@@ -7,7 +7,7 @@ public class SquareGenerationScript : MonoBehaviour
     public GameObject square;
     public GameObject player;
 
-    public int[] playerPosition = new int[2] { 0, 0 };
+    public Vector3 playerPosition = new Vector3(0,0,0);
 
     public int gridWidth;
     public int gridDepth;
@@ -58,6 +58,16 @@ public class SquareGenerationScript : MonoBehaviour
         }
     }
 
+    public Vector3 Move(Vector3 _playerPosition, Vector3 _squarePosition)
+    {
+        float XOffset = _playerPosition.x - _squarePosition.x;
+        float ZOffset = _playerPosition.z - _squarePosition.z;
+
+        //if()
+        Vector3 newPosition = new Vector3();
+        return newPosition;
+    }
+
 	// Use this for initialization
 	void Start ()
     {
@@ -65,7 +75,8 @@ public class SquareGenerationScript : MonoBehaviour
 		generateGrid();
         Player = Instantiate(player);
         Player.name = "Player";
-        Player.transform.position = new Vector3 (playerPosition[0], grid[0][0].transform.position.y + (Player.GetComponent<Renderer>().bounds.size.y / 2) + squareHeightOffset, playerPosition[1]);
+        playerPosition.y = grid[0][0].transform.position.y + (Player.GetComponent<Renderer>().bounds.size.y / 2) + squareHeightOffset;
+        Player.transform.position = new Vector3 (playerPosition.x, playerPosition.y, playerPosition.z);
     }
 
     void Update()
@@ -76,6 +87,10 @@ public class SquareGenerationScript : MonoBehaviour
             {
                 selectedPlayer = selPlayer;
                 break;
+            }
+            else
+            {
+                selectedPlayer = null;
             }
         }
     }
