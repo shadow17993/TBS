@@ -7,6 +7,8 @@ public class SquareGenerationScript : MonoBehaviour
     public GameObject square;
     public GameObject player;
 
+    public int[] playerPosition = new int[2] { 0, 0 };
+
     public int gridWidth;
     public int gridDepth;
 
@@ -63,7 +65,7 @@ public class SquareGenerationScript : MonoBehaviour
 		generateGrid();
         Player = Instantiate(player);
         Player.name = "Player";
-        Player.transform.position = new Vector3 (grid[0][0].transform.position.x, grid[0][0].transform.position.y + (Player.GetComponent<Renderer>().bounds.size.y / 2) + squareHeightOffset, grid[0][0].transform.position.z);
+        Player.transform.position = new Vector3 (playerPosition[0], grid[0][0].transform.position.y + (Player.GetComponent<Renderer>().bounds.size.y / 2) + squareHeightOffset, playerPosition[1]);
     }
 
     void Update()
